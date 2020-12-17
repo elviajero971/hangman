@@ -126,7 +126,6 @@ buttonSubmitWordPlayer1.addEventListener("click", function() {
     // affiche le nombre d'essais restant
     nbOfTriesArea.innerHTML = "You have " + nbOfTries + " left...";
 
-
     initializeAlphabet();
     displayAlphabet();
 
@@ -149,38 +148,35 @@ buttonSubmitGuessPlayer2.addEventListener("click", function() {
         // Si lettre dans le mot n'est pas encore trouvée
         valIndiceTab = (player2GuessInput.toUpperCase().charCodeAt(0) - 65);
         console.log('avant if');
-        if (player2GuessInput == inputPlayer1[i]) {
-            player2GuessState[i] = player2GuessInput;
+        if (player2GuessInput.toUpperCase() == inputPlayer1[i].toUpperCase()) {
+            player2GuessState[i] = player2GuessInput.toUpperCase();
             tableAlphabet[valIndiceTab][1] = 1;
             console.log("égalité valeur de tableAlphabet[valIndiceTab[0]: " + tableAlphabet[valIndiceTab][0]);
-            console.log("égalité valeur de : player2GuessInput: " + player2GuessInput);
-            console.log("égalité valeur de inputPlayer1[i]: " + inputPlayer1[i])
-        } else if (player2GuessInput != inputPlayer1[i].toUpperCase()) {
+            console.log("égalité valeur de : player2GuessInput: " + player2GuessInput.toUpperCase());
+            console.log("égalité valeur de inputPlayer1[" + i + "]: " + inputPlayer1.toUpperCase()[i])
+        } else if (player2GuessInput.toUpperCase() != inputPlayer1[i].toUpperCase()) {
             tableAlphabet[valIndiceTab][1] = 2;
             console.log("inégalité valeur de tableAlphabet[valIndiceTab[0]: " + tableAlphabet[valIndiceTab][0])
-            console.log("inégalité valeur de : player2GuessInput: " + player2GuessInput);
-            console.log("inégalité valeur de inputPlayer1[i]: " + inputPlayer1[i])
+            console.log("inégalité valeur de : player2GuessInput: " + player2GuessInput.toUpperCase());
+            console.log("inégalité valeur de inputPlayer1[" + i + "]: " + inputPlayer1.toUpperCase()[i])
         } else {
             tableAlphabet[valIndiceTab][1] = 0;
         }
 
-        console.log('après if')
+        console.log('après if');
+        console.log(tableAlphabet[valIndiceTab][1]);
     }
     displayAlphabet();
 
     startGame.style.display = "none";
     if (inputPlayer1 == player2GuessState.join("")) {
-
         contentPlayers.style.display = "none";
         contentWin.style.display = "flex";
-
-
     } else if (nbOfTries < 1) {
         contentPlayers.style.display = "none";
         contentLoose.style.display = "flex";
     } else {
         displayGuessState.innerHTML = player2GuessState.join(" ");
-
     }
     // à chaque clic su btnPlayer 2 on va changer l'affichage du nombre d'essaye restant
 
@@ -210,5 +206,4 @@ btnStartGameWin.addEventListener("click", function() {
     initializeVariables();
     initializeAlphabet();
     displayAlphabet();
-
 });
