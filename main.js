@@ -132,15 +132,6 @@ buttonSubmitWordPlayer1.addEventListener("click", function() {
 
 });
 
-console.log(tableAlphabet.length);
-
-
-for (i = 1; i < tableAlphabet.length; i++) {
-    let (letter + i) = document.getElementById("letter" + i)
-}
-
-console.log(letter1);
-
 
 
 // ------------- EVENT POUR BOUTON FORM PLAYER 2 ------------------
@@ -194,8 +185,6 @@ buttonSubmitGuessPlayer2.addEventListener("click", function() {
     // à chaque clic su btnPlayer 2 on va changer l'affichage du nombre d'essaye restant
 
     nbOfTriesArea.innerHTML = "You have " + nbOfTries + " left...";
-
-    console.log(tableAlphabet);
 });
 
 let btnStartGame = document.getElementById("btnStartGame");
