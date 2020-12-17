@@ -1,0 +1,294 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-image: url(img/bg-landscape.jpg);
+  background-size: cover;
+}
+
+body .main {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .main .title {
+  font-size: 1.5rem;
+  text-align: center;
+  height: 60px;
+  width: 100%;
+  margin: 5px;
+}
+
+body .main .contentEndGame {
+  width: 100%;
+  margin: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+body .main .contentEndGame #startGame {
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .main .contentEndGame #contentWin,
+body .main .contentEndGame #contentLoose {
+  display: none;
+  height: 10vh;
+}
+
+body .main #content {
+  display: none;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  padding: 5px;
+  height: 80vh;
+}
+
+body .main #content #displayHangman {
+  width: 33%;
+}
+
+body .main #content #displayPlayers {
+  width: 33%;
+  padding: 5px;
+}
+
+body .main #content #displayPlayers #player1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body .main #content #displayPlayers #player2 {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body .main #content #displayPlayers #player1,
+body .main #content #displayPlayers #player2 {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: s;
+      -ms-flex-align: s;
+          align-items: s;
+  height: 80%;
+}
+
+body .main #content #displayPlayers #player1 .content_player2,
+body .main #content #displayPlayers #player2 .content_player2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+body .main #content #displayPlayers #player1 .content_player2 .content_right,
+body .main #content #displayPlayers #player2 .content_player2 .content_right {
+  width: 30%;
+}
+
+body .main #content #displayPlayers .form {
+  background-color: rgba(0, 0, 0, 0.7);
+  background: transparent;
+  border: solid white 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+  height: 50px;
+}
+
+body .main #content #displayPlayers .form label {
+  padding: 20px;
+}
+
+body .main #content #displayPlayers .form input {
+  color: white;
+  background: transparent;
+  width: 40px;
+  height: 30px;
+  margin: 10px;
+  border: none;
+  border-bottom: 2px solid white;
+}
+
+body .main #content #displayPlayers .form button {
+  width: 40px;
+  height: 30px;
+  margin: 10px;
+}
+
+body .main #content .contentAlphabet {
+  height: 100%;
+  width: 33%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .main #content .contentAlphabet #contentListAlphabet {
+  display: none;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body .main #content .contentAlphabet #contentListAlphabet .letter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30px;
+  width: 30px;
+  border: darkblue 2px solid;
+  border-radius: 5px;
+  background-color: blue;
+  padding: 5px;
+  margin: 10px;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: ease .5s;
+  transition: ease .5s;
+  cursor: pointer;
+}
+
+body .main #content .contentAlphabet #contentListAlphabet .letter:hover {
+  background-color: darkgrey;
+}
+
+body .main #content .contentAlphabet #contentListAlphabet .letter-found {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30px;
+  width: 30px;
+  border: darkgreen 2px solid;
+  border-radius: 5px;
+  background-color: green;
+  padding: 5px;
+  margin: 10px;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: ease .5s;
+  transition: ease .5s;
+  cursor: pointer;
+}
+
+body .main #content .contentAlphabet #contentListAlphabet .letter-wrong {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30px;
+  width: 30px;
+  border: darkred 2px solid;
+  border-radius: 5px;
+  background-color: red;
+  padding: 5px;
+  margin: 10px;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: ease .5s;
+  transition: ease .5s;
+  cursor: pointer;
+}
+
+body .main .display_state {
+  font-size: 4rem;
+  text-align: center;
+}
+/*# sourceMappingURL=style.css.map */

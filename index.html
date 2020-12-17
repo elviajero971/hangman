@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="title">
+            <h1>Welcome to the Hangman !</h1>
+        </div>
+        <div class="contentEndGame">
+            <div id="startGame">
+                <h3>Start the game ?</h2>
+                    <button id="btnStartGame">Play</button>
+            </div>
+            <div id="contentWin">
+                <h3>Congrats you won!!! Play an other game ?</h1>
+                    <button id="btnStartGameWin">Play</button>
+            </div>
+            <div id="contentLoose">
+                <h3>Sorry you loose... Play an other game</h1>
+                    <button id="btnStartGameLoose">Play</button>
+            </div>
+        </div>
+        <div id="content">
+            <div id="displayHangman">
+                <div id="numberOfLifes">
+                    <p id="nbLives"></p>
+                </div>
+                <div id="drawHangman">
+
+                </div>
+            </div>
+            <div id="displayPlayers">
+                <h3>Type your word</h3>
+                <div id="player1" class="form">
+                    <label for="wordInput"></label>
+                    <input type="text" id="wordInput" name="wrdInput"><br>
+                    <button id="submitWord">Save</button>
+                </div>
+                <div id="player2">
+                    <div class="content_player2">
+                        <div class="form">
+                            <label for="wordGuessInput">Try a letter</label>
+                            <input type="text" id="player2GuessInput" name="wrdGuessInput">
+                            <button id="submitGuessInput">Try</button>
+                        </div>
+
+                    </div>
+                    <div id="displayGuessState" class="display_state"></div>
+                </div>
+
+            </div>
+            <div class="contentAlphabet">
+                <div id="contentListAlphabet">
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+    <script src="main.js"></script>
+</body>
+
+</html>
