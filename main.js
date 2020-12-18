@@ -46,7 +46,7 @@ let nbOfTriesArea = document.getElementById("nbLives");
 //je déclare la balise qui va contenir lenombre d'essais restants
 let nbLives = document.getElementById("nbLives");
 
-let player2GuessInput = document.getElementById("player2GuessInput").value;
+let player2GuessInput = document.getElementById("player2GuessInput").value.toUpperCase();
 
 
 //----------------------- tableAlphabet --------------------------
@@ -64,7 +64,7 @@ function initializeAlphabet() {
 }
 
 let valIndiceTab;
-valIndiceTab = player2GuessInput.toUpperCase().charCodeAt(0) - 65;
+valIndiceTab = player2GuessInput.charCodeAt(0) - 65;
 
 function initializeVariables() {
     inputPlayer1 = "";
@@ -79,6 +79,9 @@ function initializeVariables() {
     //au clic la zone texte player2 va disparaitre
     player2Display.style.display = "none";
     document.getElementById("wordInput").innerHTML = "";
+    for (let i = 0; i < 26; i++) {
+        tableAlphabet[i][1] = 0
+    }
 }
 
 
@@ -90,11 +93,11 @@ function displayAlphabet() {
     contentListAlphabet.innerHTML = ""; // Efface l'alphabet précédent
     for (let i = 0; i < 26; i++) {
         if (tableAlphabet[i][1] == 0) {
-            contentListAlphabet.insertAdjacentHTML('beforeend', "<div id='letter'" + i + "  class='letter'>" + tableAlphabet[i][0] + "</div>");
+            contentListAlphabet.insertAdjacentHTML('beforeend', "<div id='letter" + i + "'  class='letter'>" + tableAlphabet[i][0] + "</div>");
         } else if (tableAlphabet[i][1] == 1) {
-            contentListAlphabet.insertAdjacentHTML('beforeend', "<div id='letter'" + i + "  class='letter'>" + tableAlphabet[i][0] + "</div>");
+            contentListAlphabet.insertAdjacentHTML('beforeend', "<div id='letter" + i + "'  class='letter-found'>" + tableAlphabet[i][0] + "</div>");
         } else if (tableAlphabet[i][1] == 2) {
-            contentListAlphabet.insertAdjacentHTML('beforeend', "<div id='letter'" + i + "  class='letter'>" + tableAlphabet[i][0] + "</div>");
+            contentListAlphabet.insertAdjacentHTML('beforeend', "<div id='letter" + i + "'  class='letter-wrong'>" + tableAlphabet[i][0] + "</div>");
         }
     }
 }
@@ -106,7 +109,7 @@ function displayAlphabet() {
 
 buttonSubmitWordPlayer1.addEventListener("click", function() {
     // j'identifie le mot à trouver qui est l'input de player1'
-    inputPlayer1 = document.getElementById("wordInput").value;
+    inputPlayer1 = document.getElementById("wordInput").value.toUpperCase();
     //pour chaque lettre de wordInput on la remplace par un "_" dans le tableau str
     for (let i = 0; i < inputPlayer1.length - 1; i++) {
         player2GuessState.push('_');
@@ -128,9 +131,21 @@ buttonSubmitWordPlayer1.addEventListener("click", function() {
 
     initializeAlphabet();
     displayAlphabet();
-
 });
 
+
+
+function findLetterInWord(player2GuessInput) {
+    let tab = [""];
+    for (let i = 0; i < inputPlayer1.length; i++) {
+        if (inputPlayer1[i] == player2GuessInput) {
+            // slorsque la lettre de player2GuessInput est bien dans le mot inputPlayer1
+            tab[0] = player2GuessInput;
+            tab.push(i);
+        }
+    }
+    return tab;
+}
 
 
 // ------------- EVENT POUR BOUTON FORM PLAYER 2 ------------------
@@ -139,44 +154,31 @@ buttonSubmitWordPlayer1.addEventListener("click", function() {
 
 buttonSubmitGuessPlayer2.addEventListener("click", function() {
     // je décrémente le nombre d'essais du joueurs
-    nbOfTries--;
+
     // le contenu de chaque input de player2 est stocké dans player2GuessInput
-    player2GuessInput = document.getElementById("player2GuessInput").value;
+    player2GuessInput = document.getElementById("player2GuessInput").value.toUpperCase();
 
+    valIndiceTab = (player2GuessInput.charCodeAt(0) - 65);
     // Boucle qui vérifie si la lettre existe dans le mot
-    for (let i = 0; i < inputPlayer1.length; i++) {
-        // Si lettre dans le mot n'est pas encore trouvée
-        valIndiceTab = (player2GuessInput.toUpperCase().charCodeAt(0) - 65);
-        console.log('avant if');
-        if (player2GuessInput.toUpperCase() == inputPlayer1[i].toUpperCase()) {
-            player2GuessState[i] = player2GuessInput.toUpperCase();
-            tableAlphabet[valIndiceTab][1] = 1;
-            console.log("égalité valeur de tableAlphabet[valIndiceTab[0]: " + tableAlphabet[valIndiceTab][0]);
-            console.log("égalité valeur de : player2GuessInput: " + player2GuessInput.toUpperCase());
-            console.log("égalité valeur de inputPlayer1[" + i + "]: " + inputPlayer1.toUpperCase()[i])
-        } else if (player2GuessInput.toUpperCase() != inputPlayer1[i].toUpperCase()) {
-            tableAlphabet[valIndiceTab][1] = 2;
-            console.log("inégalité valeur de tableAlphabet[valIndiceTab[0]: " + tableAlphabet[valIndiceTab][0])
-            console.log("inégalité valeur de : player2GuessInput: " + player2GuessInput.toUpperCase());
-            console.log("inégalité valeur de inputPlayer1[" + i + "]: " + inputPlayer1.toUpperCase()[i])
-        } else {
-            tableAlphabet[valIndiceTab][1] = 0;
-        }
 
-        console.log('après if');
-        console.log(tableAlphabet[valIndiceTab][1]);
+    let result = findLetterInWord(player2GuessInput)
+    if (result[0]) {
+        tableAlphabet[valIndiceTab][1] = 1;
+        player2GuessState[result[1]] = player2GuessInput;
+    } else {
+        tableAlphabet[valIndiceTab][1] = 2;
+        nbOfTries--;
     }
+
     displayAlphabet();
 
     startGame.style.display = "none";
     if (inputPlayer1.toUpperCase() == player2GuessState.join("").toUpperCase()) {
         contentPlayers.style.display = "none";
         contentWin.style.display = "flex";
-        console.log("tu as gagné");
     } else if (nbOfTries < 1) {
         contentPlayers.style.display = "none";
         contentLoose.style.display = "flex";
-        console.log("tu as perdu");
     } else {
         displayGuessState.innerHTML = player2GuessState.join(" ");
     }
