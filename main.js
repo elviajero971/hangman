@@ -169,12 +169,14 @@ buttonSubmitGuessPlayer2.addEventListener("click", function() {
     displayAlphabet();
 
     startGame.style.display = "none";
-    if (inputPlayer1 == player2GuessState.join("")) {
+    if (inputPlayer1.toUpperCase() == player2GuessState.join("").toUpperCase()) {
         contentPlayers.style.display = "none";
         contentWin.style.display = "flex";
+        console.log("tu as gagné");
     } else if (nbOfTries < 1) {
         contentPlayers.style.display = "none";
         contentLoose.style.display = "flex";
+        console.log("tu as perdu");
     } else {
         displayGuessState.innerHTML = player2GuessState.join(" ");
     }
