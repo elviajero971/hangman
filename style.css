@@ -114,42 +114,7 @@ body .main #content #displayPlayers #player1 {
   display: flex;
 }
 
-body .main #content #displayPlayers #player2 {
-  display: none;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-body .main #content #displayPlayers #player1,
-body .main #content #displayPlayers #player2 {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: s;
-      -ms-flex-align: s;
-          align-items: s;
-  height: 80%;
-}
-
-body .main #content #displayPlayers #player1 .content_player2,
-body .main #content #displayPlayers #player2 .content_player2 {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-}
-
-body .main #content #displayPlayers #player1 .content_player2 .content_right,
-body .main #content #displayPlayers #player2 .content_player2 .content_right {
-  width: 30%;
-}
-
-body .main #content #displayPlayers .form {
+body .main #content #displayPlayers #player1 .form {
   background-color: rgba(0, 0, 0, 0.7);
   background: transparent;
   border: solid white 2px;
@@ -169,11 +134,11 @@ body .main #content #displayPlayers .form {
   height: 50px;
 }
 
-body .main #content #displayPlayers .form label {
+body .main #content #displayPlayers #player1 .form label {
   padding: 20px;
 }
 
-body .main #content #displayPlayers .form input {
+body .main #content #displayPlayers #player1 .form input {
   color: white;
   background: transparent;
   width: 60px;
@@ -183,7 +148,86 @@ body .main #content #displayPlayers .form input {
   border-bottom: 2px solid white;
 }
 
-body .main #content #displayPlayers .form button {
+body .main #content #displayPlayers #player1 .form button {
+  width: 40px;
+  height: 30px;
+  margin: 10px;
+}
+
+body .main #content #displayPlayers #player2 {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 80%;
+}
+
+body .main #content #displayPlayers #player2 {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 80%;
+}
+
+body .main #content #displayPlayers #player2 .content_player2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+body .main #content #displayPlayers #player2 .content_player2 .content_right {
+  width: 30%;
+}
+
+body .main #content #displayPlayers #player2 .form {
+  background-color: rgba(0, 0, 0, 0.7);
+  background: transparent;
+  border: solid white 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+  height: 50px;
+}
+
+body .main #content #displayPlayers #player2 .form label {
+  padding: 20px;
+}
+
+body .main #content #displayPlayers #player2 .form input {
+  color: white;
+  background: transparent;
+  width: 60px;
+  height: 30px;
+  margin: 10px;
+  border: none;
+  border-bottom: 2px solid white;
+}
+
+body .main #content #displayPlayers #player2 .form button {
   width: 40px;
   height: 30px;
   margin: 10px;
@@ -229,9 +273,7 @@ body .main #content .contentAlphabet #contentListAlphabet .letter {
   display: flex;
   height: 30px;
   width: 30px;
-  border: darkblue 2px solid;
   border-radius: 5px;
-  background-color: blue;
   padding: 5px;
   margin: 10px;
   text-align: center;
@@ -247,44 +289,31 @@ body .main #content .contentAlphabet #contentListAlphabet .letter:hover {
   background-color: darkgrey;
 }
 
-body .main #content .contentAlphabet #contentListAlphabet .letter-found {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 30px;
-  width: 30px;
-  border: darkgreen 2px solid;
-  border-radius: 5px;
-  background-color: green;
-  padding: 5px;
-  margin: 10px;
-  text-align: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-transition: ease .5s;
-  transition: ease .5s;
-  cursor: pointer;
+body .main #content .contentAlphabet #contentListAlphabet .normal {
+  border: darkblue 2px solid;
+  background-color: blue;
 }
 
-body .main #content .contentAlphabet #contentListAlphabet .letter-wrong {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 30px;
-  width: 30px;
+body .main #content .contentAlphabet #contentListAlphabet .normal:hover {
+  background-color: darkblue;
+}
+
+body .main #content .contentAlphabet #contentListAlphabet .found {
+  border: darkgreen 2px solid;
+  background-color: green;
+}
+
+body .main #content .contentAlphabet #contentListAlphabet .found:hover {
+  background-color: darkgreen;
+}
+
+body .main #content .contentAlphabet #contentListAlphabet .wrong {
   border: darkred 2px solid;
-  border-radius: 5px;
   background-color: red;
-  padding: 5px;
-  margin: 10px;
-  text-align: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-transition: ease .5s;
-  transition: ease .5s;
-  cursor: pointer;
+}
+
+body .main #content .contentAlphabet #contentListAlphabet .wrong:hover {
+  background-color: darkred;
 }
 
 body .main .display_state {

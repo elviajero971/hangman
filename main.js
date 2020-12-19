@@ -88,16 +88,17 @@ function initializeVariables() {
 
 //------------ FONCTION displayAlphabet() -----------------------
 //----------------------------------------------------------------
+// ----------------------------------------------------------------
 
 function displayAlphabet() {
     contentListAlphabet.innerHTML = ""; // Efface l'alphabet précédent
     for (let i = 0; i < 26; i++) {
         if (tableAlphabet[i][1] == 0) {
-            contentListAlphabet.insertAdjacentHTML('beforeend', "<div id='letter" + i + "'  class='letter'>" + tableAlphabet[i][0] + "</div>");
+            contentListAlphabet.insertAdjacentHTML('beforeend', "<div id='letter" + i + "'  class='letter normal'>" + tableAlphabet[i][0] + "</div>");
         } else if (tableAlphabet[i][1] == 1) {
-            contentListAlphabet.insertAdjacentHTML('beforeend', "<div id='letter" + i + "'  class='letter-found'>" + tableAlphabet[i][0] + "</div>");
+            contentListAlphabet.insertAdjacentHTML('beforeend', "<div id='letter" + i + "'  class='letter found'>" + tableAlphabet[i][0] + "</div>");
         } else if (tableAlphabet[i][1] == 2) {
-            contentListAlphabet.insertAdjacentHTML('beforeend', "<div id='letter" + i + "'  class='letter-wrong'>" + tableAlphabet[i][0] + "</div>");
+            contentListAlphabet.insertAdjacentHTML('beforeend', "<div id='letter" + i + "'  class='letter wrong'>" + tableAlphabet[i][0] + "</div>");
         }
     }
 }
@@ -131,6 +132,7 @@ buttonSubmitWordPlayer1.addEventListener("click", function() {
 
     initializeAlphabet();
     displayAlphabet();
+    findTheAlphabetLetters();
 });
 
 
@@ -152,7 +154,10 @@ function findLetterInWord(player2GuessInput) {
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
+
 buttonSubmitGuessPlayer2.addEventListener("click", function() {
+
+    //rajouter une boucle pour afficher un message si l'utilisateur n'a saisie aucune donnée ou si il a déjà saisie la lettre.
     // je décrémente le nombre d'essais du joueurs
 
     // le contenu de chaque input de player2 est stocké dans player2GuessInput
@@ -161,10 +166,12 @@ buttonSubmitGuessPlayer2.addEventListener("click", function() {
     valIndiceTab = (player2GuessInput.charCodeAt(0) - 65);
     // Boucle qui vérifie si la lettre existe dans le mot
 
-    let result = findLetterInWord(player2GuessInput)
+    let result = findLetterInWord(player2GuessInput);
     if (result[0]) {
         tableAlphabet[valIndiceTab][1] = 1;
-        player2GuessState[result[1]] = player2GuessInput;
+        for (let i = 1; i < result.length; i++) {
+            player2GuessState[result[i]] = player2GuessInput;
+        }
     } else {
         tableAlphabet[valIndiceTab][1] = 2;
         nbOfTries--;
@@ -185,6 +192,7 @@ buttonSubmitGuessPlayer2.addEventListener("click", function() {
     // à chaque clic su btnPlayer 2 on va changer l'affichage du nombre d'essaye restant
 
     nbOfTriesArea.innerHTML = "You have " + nbOfTries + " left...";
+
 });
 
 let btnStartGame = document.getElementById("btnStartGame");
@@ -211,3 +219,53 @@ btnStartGameWin.addEventListener("click", function() {
     initializeAlphabet();
     displayAlphabet();
 });
+
+// ------------- EVENT POUR BOUTON ALPHABET ------------------
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+
+// function findTheAlphabetLetters() {
+//     let theAlphabet = document.getElementsByClassName("letter");
+//     for (var i = 0; i < theAlphabet.length; i++) {
+//         console.log(theAlphabet[i].innerHTML)
+//     }
+//     return
+// }
+
+
+function findTheAlphabetLetters() {
+
+    let theAlphabet = document.getElementsByClassName("letter");
+    for (let i = 0; i < theAlphabet.length; i++) {
+        theAlphabet[i].addEventListener("click", function() {
+            player2GuessInput = theAlphabet[i].innerHTML;
+            valIndiceTab = (player2GuessInput.charCodeAt(0) - 65);
+            let result = findLetterInWord(player2GuessInput);
+            if (result[0]) {
+                tableAlphabet[valIndiceTab][1] = 1;
+                theAlphabet[i].classList.add('found');
+                for (let i = 1; i < result.length; i++) {
+                    player2GuessState[result[i]] = player2GuessInput;
+                }
+            } else {
+                tableAlphabet[valIndiceTab][1] = 2;
+                theAlphabet[i].classList.add('wrong');
+                nbOfTries--;
+            }
+
+            startGame.style.display = "none";
+            if (inputPlayer1.toUpperCase() == player2GuessState.join("").toUpperCase()) {
+                contentPlayers.style.display = "none";
+                contentWin.style.display = "flex";
+            } else if (nbOfTries < 1) {
+                contentPlayers.style.display = "none";
+                contentLoose.style.display = "flex";
+            } else {
+                displayGuessState.innerHTML = player2GuessState.join(" ");
+            }
+            // à chaque clic su btnPlayer 2 on va changer l'affichage du nombre d'essaye restant
+
+            nbOfTriesArea.innerHTML = "You have " + nbOfTries + " left...";
+        });
+    }
+}
