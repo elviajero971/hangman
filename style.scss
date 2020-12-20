@@ -53,10 +53,19 @@ body {
             padding: 5px;
             height: 80vh;
             #displayHangman {
-                width: 33%;
+                width: 38%;
+                #drawHangman {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    .draw-hangman-part {
+                        margin: 10px;
+                        display: none;
+                    }
+                }
             }
             #displayPlayers {
-                width: 33%;
+                width: 27%;
                 padding: 5px;
                 #player1 {
                     display: flex;
@@ -139,7 +148,7 @@ body {
             }
             .contentAlphabet {
                 height: 100%;
-                width: 33%;
+                width: 38%;
                 display: flex;
                 flex-direction: column;
                 justify-content: start;

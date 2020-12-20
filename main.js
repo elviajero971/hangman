@@ -1,6 +1,6 @@
 //Jeu du pendu à deux joueurs!
 
-let nbOfTries = 10; //initialise le nombre d'essais à 10
+let nbOfLives = 10; //initialise le nombre d'essais à 10
 
 //déclaration du bouton qui va déclencher l'event sauvegarde du mot de Player 1
 let buttonSubmitWordPlayer1 = document.getElementById("submitWord");
@@ -68,7 +68,7 @@ valIndiceTab = player2GuessInput.charCodeAt(0) - 65;
 
 function initializeVariables() {
     inputPlayer1 = "";
-    nbOfTries = 10;
+    nbOfLives = 10;
     player2GuessState = ['_'];
     contentPlayers.style.display = "flex";
     startGame.style.display = "none";
@@ -128,7 +128,7 @@ buttonSubmitWordPlayer1.addEventListener("click", function() {
     document.getElementById("wordInput").innerHTML = "";
 
     // affiche le nombre d'essais restant
-    nbOfTriesArea.innerHTML = "You have " + nbOfTries + " left...";
+    nbOfTriesArea.innerHTML = "You have " + nbOfLives + " left...";
 
     initializeAlphabet();
     displayAlphabet();
@@ -174,7 +174,7 @@ buttonSubmitGuessPlayer2.addEventListener("click", function() {
         }
     } else {
         tableAlphabet[valIndiceTab][1] = 2;
-        nbOfTries--;
+        nbOfLives--;
     }
 
     displayAlphabet();
@@ -183,7 +183,7 @@ buttonSubmitGuessPlayer2.addEventListener("click", function() {
     if (inputPlayer1.toUpperCase() == player2GuessState.join("").toUpperCase()) {
         contentPlayers.style.display = "none";
         contentWin.style.display = "flex";
-    } else if (nbOfTries < 1) {
+    } else if (nbOfLives < 1) {
         contentPlayers.style.display = "none";
         contentLoose.style.display = "flex";
     } else {
@@ -191,11 +191,14 @@ buttonSubmitGuessPlayer2.addEventListener("click", function() {
     }
     // à chaque clic su btnPlayer 2 on va changer l'affichage du nombre d'essaye restant
 
-    nbOfTriesArea.innerHTML = "You have " + nbOfTries + " left...";
+    nbOfTriesArea.innerHTML = "You have " + nbOfLives + " left...";
 
 });
 
-let btnStartGame = document.getElementById("btnStartGame");
+//
+
+let btnStartGameOnePlayer = document.getElementById("btnStartGameOnePlayer"); // start two players game
+let btnStartGame = document.getElementById("btnStartGameTwoPlayers"); // start two players game
 let btnStartGameWin = document.getElementById("btnStartGameWin");
 let btnStartGameLoose = document.getElementById("btnStartGameLoose");
 
@@ -250,14 +253,14 @@ function findTheAlphabetLetters() {
             } else {
                 tableAlphabet[valIndiceTab][1] = 2;
                 theAlphabet[i].classList.add('wrong');
-                nbOfTries--;
+                nbOfLives--;
             }
 
             startGame.style.display = "none";
             if (inputPlayer1.toUpperCase() == player2GuessState.join("").toUpperCase()) {
                 contentPlayers.style.display = "none";
                 contentWin.style.display = "flex";
-            } else if (nbOfTries < 1) {
+            } else if (nbOfLives < 1) {
                 contentPlayers.style.display = "none";
                 contentLoose.style.display = "flex";
             } else {
@@ -265,7 +268,18 @@ function findTheAlphabetLetters() {
             }
             // à chaque clic su btnPlayer 2 on va changer l'affichage du nombre d'essaye restant
 
-            nbOfTriesArea.innerHTML = "You have " + nbOfTries + " left...";
+            nbOfTriesArea.innerHTML = "You have " + nbOfLives + " left...";
+            displayHangMan();
         });
+    }
+}
+
+
+function displayHangMan() {
+    let numberOfParts = 10 - nbOfLives;
+    let bodyPartsHangman = document.getElementsByClassName("draw-hangman-part");
+    for (let i = 0; i < numberOfParts; i++) {
+        bodyPartsHangman[i].style.display = "flex";
+        console.log("list of body parts display :" + bodyPartsHangman[i].textContent)
     }
 }
